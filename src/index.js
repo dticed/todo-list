@@ -1,3 +1,3 @@
-import createTodoList from "./modules/todoList";
+import createApp from "./modules/app";
 
-createTodoList();
+createApp();

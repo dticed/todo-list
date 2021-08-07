@@ -9,8 +9,8 @@ function createHeader() {
 }
 
 function createNav() {
-    const nav = document.createElement('div');
-    
+    const nav = document.createElement('nav');
+
     nav.appendChild(createNavList('Todo List'));
     return nav;
 }
@@ -33,11 +33,11 @@ function createNavList(text) {
     return ul;
 }
 
-function createDOMElements() {
+function loadHeaderElements() {
     const body = document.querySelector('body');
     body.appendChild(createHeader());
 
     return body;
 }
 
-export default createDOMElements;
+export default loadHeaderElements;
