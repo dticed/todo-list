@@ -2,10 +2,10 @@ import loadHeaderElements from "./headerElements";
 import loadConsoleElements from "./consolelElements";
 import loadFooterElements from "./footerElements";
 
-function createApp(){
+function loadApp(){
     loadHeaderElements();
     loadConsoleElements();
     loadFooterElements();
 }
 
-export default createApp;
+export default loadApp;

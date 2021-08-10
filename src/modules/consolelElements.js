@@ -1,3 +1,6 @@
+import typeWriter from "./typeWriter";
+import getInputValue from './consoleController';
+
 function createConsole() {
     const console = document.createElement('div');
     console.classList.add('console');
@@ -13,11 +16,10 @@ function createInputConsole() {
     inputConsole.classList.add('input-console');
 
     const inputTextConsole = document.createElement('div');
-    inputTextConsole.classList.add('input');
+    inputTextConsole.classList.add('input-area');
 
-
-    inputConsole.appendChild(createParagraph("> wake up, user"))
-    inputTextConsole.appendChild(createParagraph("user@todolist:~$ "))
+    inputConsole.appendChild(createParagraph("> wake up, user"));
+    inputTextConsole.appendChild(createParagraph("user@todolist:~$ "));
     inputTextConsole.appendChild(createTextArea());
     inputConsole.append(inputTextConsole);
 
@@ -28,6 +30,8 @@ function createTextArea() {
     const textArea = document.createElement('textarea');
     textArea.cols = 30;
     textArea.rows = 1;
+    textArea.wrap = 'off';
+    getInputValue(textArea);
 
     return textArea;
 }
