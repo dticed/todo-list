@@ -66,6 +66,9 @@ textarea {
 }
 
 .output-console {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #424242;
     background: #300a24;
 }
@@ -74,4 +77,8 @@ p {
     font-family: 'Fira Code';
     color: #4EFF31;
     padding: 2px;
+}
+
+li {
+    font-size: 14px;
 }

@@ -1,6 +1,6 @@
-const todoList = () => {
+const todoList = (() => {
     const commands = ["create", "delete"];
-    const list = [];
+    const list = ["sidhfsd", "iasohiohiheia"];
 
     const getCommands = () => {
         commands.forEach(command => {
@@ -9,8 +9,14 @@ const todoList = () => {
     }
 
     const getList = () => {
-        list.forEach(item => {
-            return item;
-        });
+        return list;
     }
-}
+
+    const addItem = (item) => {
+        list.push(item);
+    }
+
+    return {getCommands, getList, addItem}
+})();
+
+export default todoList;
