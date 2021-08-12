@@ -3,7 +3,7 @@
 
 const todoList = (() => {
     const commands = ["create", "delete"];
-    const list = ["sadfsa", "Lucas", "sfasdf"];
+    const list = [];
 
     const getCommands = () => {
         commands.forEach(command => {
@@ -26,35 +26,23 @@ const todoList = (() => {
     }
 })();
 
-// const Todo = (text) => {
-//     this.text = text;
-
-//     const getText = () => {
-//         return text;
-//     }
-
-//     return { getText };
-// }
-
-// Função para adicionar todo no array
 function addTodo(element) {
     console.log(element)
     console.log(element.value)
     todoList.addItem(element.value);
     element.value = "";
     console.log(todoList.getList())
-    updateTodoList();
 }
 
-function updateTodoList() {
-    const ul = document.createElement('ul');
-    todoList.getList().forEach(element => {
-        const li = document.createElement('li');
-        li.innerHTML = element;
-        ul.appendChild(li);
-    });
-    return ul;
-}
+// function updateTodoList() {
+//     const li = document.createElement('li');
+//     todoList.getList().forEach(element => {
+        
+//         li.innerHTML = element;
+
+//     });
+//     return li;
+// }
 
 function createConsole() {
     const console = document.createElement('div');
@@ -98,10 +86,16 @@ function createTextArea() {
 
 function createOutputConsole() {
     const outputConsole = document.createElement('div');
-
+    const ul = document.createElement('ul');
     outputConsole.classList.add('output-console');
-    outputConsole.appendChild(updateTodoList());
-
+    outputConsole.appendChild(ul);
+    
+    todoList.getList().forEach(element => {
+        const li = document.createElement('li');
+        li.innerHTML = element;
+        ul.appendChild(li);
+    })
+    
     return outputConsole;
 }
 
@@ -115,8 +109,6 @@ function createParagraph(text) {
 function loadConsoleElements() {
     const body = document.querySelector('body');
     body.appendChild(createConsole());
-
-    updateTodoList();
 }
 
 export default loadConsoleElements;
