@@ -33,7 +33,9 @@ function createTextArea() {
 
     textArea.addEventListener('keypress', (e) => {
         if (e.key == "Enter") {
-            todoListController.addTodo(textArea);
+            const list = todoListController.addTodo(textArea);
+            const outputConsole = document.querySelector('.output-console')
+            outputConsole.appendChild(list)
         }
     });
 
