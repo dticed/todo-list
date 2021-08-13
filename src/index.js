@@ -1,3 +1,3 @@
-import loadApp from "./modules/app";
+import createApp from "./modules/app";
 
-loadApp();
+createApp();

@@ -1,48 +1,4 @@
-//import typeWriter from "./typeWriter";
-//import todoList from "./todoListController";
-
-const todoList = (() => {
-    const commands = ["create", "delete"];
-    const list = [];
-
-    const getCommands = () => {
-        commands.forEach(command => {
-            return command;
-        })
-    }
-
-    const getList = () => {
-        return list;
-    }
-
-    const addItem = (item) => {
-        list.push(item);
-    }
-
-    return {
-        getCommands,
-        getList,
-        addItem
-    }
-})();
-
-function addTodo(element) {
-    console.log(element)
-    console.log(element.value)
-    todoList.addItem(element.value);
-    element.value = "";
-    console.log(todoList.getList())
-}
-
-// function updateTodoList() {
-//     const li = document.createElement('li');
-//     todoList.getList().forEach(element => {
-        
-//         li.innerHTML = element;
-
-//     });
-//     return li;
-// }
+import { todoListController } from './todoList';
 
 function createConsole() {
     const console = document.createElement('div');
@@ -77,26 +33,13 @@ function createTextArea() {
 
     textArea.addEventListener('keypress', (e) => {
         if (e.key == "Enter") {
-            addTodo(textArea)
+            const list = todoListController.addTodo(textArea);
+            const outputConsole = document.querySelector('.output-console');
+            outputConsole.appendChild(list);
         }
     });
 
     return textArea;
-}
-
-function createOutputConsole() {
-    const outputConsole = document.createElement('div');
-    const ul = document.createElement('ul');
-    outputConsole.classList.add('output-console');
-    outputConsole.appendChild(ul);
-    
-    todoList.getList().forEach(element => {
-        const li = document.createElement('li');
-        li.innerHTML = element;
-        ul.appendChild(li);
-    })
-    
-    return outputConsole;
 }
 
 function createParagraph(text) {
@@ -106,9 +49,19 @@ function createParagraph(text) {
     return p;
 }
 
+function createOutputConsole() {
+    const outputConsole = document.createElement('div');
+    const ul = document.createElement('ul');
+    ul.classList.add('todo-list');
+    outputConsole.classList.add('output-console');
+    outputConsole.appendChild(ul);
+    
+
+    return outputConsole;
+}
+
 function loadConsoleElements() {
-    const body = document.querySelector('body');
-    body.appendChild(createConsole());
+    return createConsole();
 }
 
 export default loadConsoleElements;
