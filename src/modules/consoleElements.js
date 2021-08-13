@@ -1,3 +1,15 @@
+import { todoListController } from './todoList';
+
+function createConsole() {
+    const console = document.createElement('div');
+    console.classList.add('console');
+
+    console.appendChild(createInputConsole());
+    console.appendChild(createOutputConsole());
+
+    return console;
+}
+
 function createInputConsole() {
     const inputConsole = document.createElement('div');
     inputConsole.classList.add('input-console');
@@ -21,7 +33,7 @@ function createTextArea() {
 
     textArea.addEventListener('keypress', (e) => {
         if (e.key == "Enter") {
-            addTodo(textArea)
+            todoListController.addTodo(textArea);
         }
     });
 
@@ -34,3 +46,19 @@ function createParagraph(text) {
 
     return p;
 }
+
+function createOutputConsole() {
+    const outputConsole = document.createElement('div');
+    const ul = document.createElement('ul');
+    ul.classList.add('todo-list');
+    outputConsole.classList.add('output-console');
+    outputConsole.appendChild(ul);
+    
+    return outputConsole;
+}
+
+function loadConsoleElements() {
+    return createConsole();
+}
+
+export default loadConsoleElements;

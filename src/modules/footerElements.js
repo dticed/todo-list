@@ -14,10 +14,7 @@ function createParagraph() {
 }
 
 function loadFooterElements() {
-    const body = document.querySelector('body');
-    body.appendChild(createFooter());
-
-    return body;
+    return createFooter();
 }
 
 export default loadFooterElements;

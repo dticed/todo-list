@@ -34,10 +34,7 @@ function createNavList(text) {
 }
 
 function loadHeaderElements() {
-    const body = document.querySelector('body');
-    body.appendChild(createHeader());
-
-    return body;
+    return createHeader();
 }
 
 export default loadHeaderElements;
