@@ -24,11 +24,15 @@ const todoList = (() => {
 })();
 
 const todoListController = (() => {
-    const ul = document.getElementsByClassName('todo-list');
+    // const ul = document.getElementsByClassName('todo-list');
 
-    for(let i = 0; i < todoList.getList().length; i++) {
-        console.log(getUl())
-    }
+    // const getUl = () => {
+    //     return ul;
+    // }
+
+    // for(let i = 0; i < todoList.getList().length; i++) {
+    //     console.log(getUl())
+    // }
 
     // todoList.getList().forEach(element => {
     //     const li = document.createElement('li');
@@ -36,17 +40,25 @@ const todoListController = (() => {
     //     console.log(li)
     // })
     
-    const getUl = () => {
+    const renderTodoList = () => {
+        const ul = document.createElement('ul');
+        todoList.getList().forEach(element => {
+            const li = document.createElement('li');
+            li.innerHTML = element;
+            ul.appendChild(li);
+        })
+
         return ul;
     }
 
     const addTodo = (element) => {
         todoList.addItem(element.value);
         element.value = "";
+        return renderTodoList();
     }
 
     return {
-        addTodo
+        renderTodoList, addTodo
     }
 })();
 
