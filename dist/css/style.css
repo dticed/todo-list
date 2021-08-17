@@ -79,10 +79,10 @@ p {
     padding: 2px;
 }
 
-li {
+.output-console ul li {
     font-size: 14px;
 }
 
-.todo-list {
-    
+ul .todo-list {
+    font-size: 1px;
 }

@@ -1,3 +1,4 @@
+import { text } from 'cheerio/lib/api/manipulation';
 import { todoListController } from './todoList';
 
 function createConsole() {
@@ -26,13 +27,14 @@ function createInputConsole() {
 }
 
 function createTextArea() {
-    const textArea = document.createElement('textarea');
+    let textArea = document.createElement('textarea');
     textArea.cols = 30;
     textArea.rows = 1;
     textArea.wrap = 'off';
 
     textArea.addEventListener('keypress', (e) => {
         if (e.key == "Enter") {
+            //todoListController.verifyInput(textArea);
             const list = todoListController.addTodo(textArea);
             const outputConsole = document.querySelector('.output-console');
             outputConsole.appendChild(list);
@@ -51,11 +53,8 @@ function createParagraph(text) {
 
 function createOutputConsole() {
     const outputConsole = document.createElement('div');
-    const ul = document.createElement('ul');
-    ul.classList.add('todo-list');
     outputConsole.classList.add('output-console');
-    outputConsole.appendChild(ul);
-    
+    outputConsole.appendChild(todoListController.renderTodoList()); 
 
     return outputConsole;
 }
