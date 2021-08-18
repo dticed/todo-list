@@ -1,5 +1,9 @@
-import { text } from 'cheerio/lib/api/manipulation';
-import { todoListController } from './todoList';
+import {
+    text
+} from 'cheerio/lib/api/manipulation';
+import {
+    todoListController
+} from './todoList';
 
 function createConsole() {
     const console = document.createElement('div');
@@ -34,10 +38,16 @@ function createTextArea() {
 
     textArea.addEventListener('keypress', (e) => {
         if (e.key == "Enter") {
-            //todoListController.verifyInput(textArea);
-            const list = todoListController.addTodo(textArea);
-            const outputConsole = document.querySelector('.output-console');
-            outputConsole.appendChild(list);
+            if (todoListController.verifyInput(textArea)) {
+                const list = todoListController.addTodo(textArea);
+                const outputConsole = document.querySelector('.output-console');
+                outputConsole.appendChild(list);
+            } else {
+                const inputConsole = document.querySelector('.input-console');
+                const span = document.createElement('span');
+                span.textContent = "command not found"
+                inputConsole.appendChild(span)
+            }
         }
     });
 
@@ -54,7 +64,7 @@ function createParagraph(text) {
 function createOutputConsole() {
     const outputConsole = document.createElement('div');
     outputConsole.classList.add('output-console');
-    outputConsole.appendChild(todoListController.renderTodoList()); 
+    outputConsole.appendChild(todoListController.renderTodoList());
 
     return outputConsole;
 }

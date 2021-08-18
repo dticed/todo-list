@@ -86,3 +86,9 @@ p {
 ul .todo-list {
     font-size: 1px;
 }
+
+span {
+    color: #4EFF31;
+    font-size: 15px;
+    font-family: 'Fira Code';
+}

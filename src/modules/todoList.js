@@ -21,32 +21,25 @@ const todoListController = (() => {
 
     const renderTodoList = () => {
         const li = document.createElement('li');
+        li.classList.add('todo')
         todoList.getList().forEach((element, index) => {
             li.innerHTML = index + 1 + " - " + element;
             ul.appendChild(li);
         })
+        console.log(todoList.getList())
         return ul;
     }
 
     const addTodo = (element) => {
-        const list = element.value.trim().split(" ");
-        const command = list[0].toLowerCase();
-        const todo = list[1];
-        if(command == "create") {
-            todoList.addItem(todo);
-        }
-        
+        todoList.addItem(element);
         clearTextArea();
         return renderTodoList();
     }
 
-    const removeTodo = (element) => {
-        const string = element.value.split(" ");
-        const command = string[0].toLowerCase();
-        if(command == "delete") {
-            todoList.addItem(string[1]);
-        }
-        
+    const removeTodo = (i) => {
+        const index = i;
+        todoList.getList().splice(index, 1);
+        clearTextArea();
         return renderTodoList();
     }
 
@@ -58,14 +51,24 @@ const todoListController = (() => {
     }
 
     const verifyInput = (element) => {
-        const list = element.value.split(" ");
+        const list = element.value.trim().split(" ");
         const command = list[0].toLowerCase();
         const todo = list[1];
-        if (command != "create" && command != "delete") {
-            
+        if (command == "create") {
+            addTodo(todo);
+            console.log("meuzovo")
+        } else if (command == "delete") {
+            const ul = document.querySelector('.todo-list');
+            // const li = document.querySelector('.todo');
+            // ul.removeChild(li);
+            removeTodo(parseInt(todo) - 1);
+            ul.removeChild(ul.childNodes[parseInt(todo) - 1]);
+            console.log(ul)
+        } else {
+            clearTextArea();
             return false;
         }
-        return true;
+
     }
 
     const clearTextArea = () => {
