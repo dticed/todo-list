@@ -21,6 +21,7 @@ const todoListController = (() => {
 
     const renderTodoList = () => {
         const li = document.createElement('li');
+        li.classList.add('todo')
         todoList.getList().forEach((element, index) => {
             li.innerHTML = index + 1 + " - " + element;
             ul.appendChild(li);
@@ -55,9 +56,14 @@ const todoListController = (() => {
         const todo = list[1];
         if (command == "create") {
             addTodo(todo);
+            console.log("meuzovo")
         } else if (command == "delete") {
+            const ul = document.querySelector('.todo-list');
+            // const li = document.querySelector('.todo');
+            // ul.removeChild(li);
             removeTodo(parseInt(todo) - 1);
-            document.querySelectorAll('.todo-list')[0].parentNode.removeChild[parseInt(todo) - 1];
+            ul.removeChild(ul.childNodes[parseInt(todo) - 1]);
+            console.log(ul)
         } else {
             clearTextArea();
             return false;

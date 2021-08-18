@@ -42,6 +42,11 @@ function createTextArea() {
                 const list = todoListController.addTodo(textArea);
                 const outputConsole = document.querySelector('.output-console');
                 outputConsole.appendChild(list);
+            } else {
+                const inputConsole = document.querySelector('.input-console');
+                const span = document.createElement('span');
+                span.textContent = "command not found"
+                inputConsole.appendChild(span)
             }
         }
     });
