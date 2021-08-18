@@ -25,28 +25,20 @@ const todoListController = (() => {
             li.innerHTML = index + 1 + " - " + element;
             ul.appendChild(li);
         })
+        console.log(todoList.getList())
         return ul;
     }
 
     const addTodo = (element) => {
-        const list = element.value.trim().split(" ");
-        const command = list[0].toLowerCase();
-        const todo = list[1];
-        if(command == "create") {
-            todoList.addItem(todo);
-        }
-        
+        todoList.addItem(element);
         clearTextArea();
         return renderTodoList();
     }
 
-    const removeTodo = (element) => {
-        const string = element.value.split(" ");
-        const command = string[0].toLowerCase();
-        if(command == "delete") {
-            todoList.addItem(string[1]);
-        }
-        
+    const removeTodo = (i) => {
+        const index = i;
+        todoList.getList().splice(index, 1);
+        clearTextArea();
         return renderTodoList();
     }
 
@@ -58,14 +50,19 @@ const todoListController = (() => {
     }
 
     const verifyInput = (element) => {
-        const list = element.value.split(" ");
+        const list = element.value.trim().split(" ");
         const command = list[0].toLowerCase();
         const todo = list[1];
-        if (command != "create" && command != "delete") {
-            
+        if (command == "create") {
+            addTodo(todo);
+        } else if (command == "delete") {
+            removeTodo(parseInt(todo) - 1);
+            document.querySelectorAll('.todo-list')[0].parentNode.removeChild[parseInt(todo) - 1];
+        } else {
+            clearTextArea();
             return false;
         }
-        return true;
+
     }
 
     const clearTextArea = () => {
